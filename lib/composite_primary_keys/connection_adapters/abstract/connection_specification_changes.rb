@@ -7,7 +7,7 @@ module ActiveRecord
     end
     
     def self.establish_connection(spec = ENV["DATABASE_URL"])
-      spec     ||= DEFAULT_ENV.call.to_sym
+      spec     ||= DEFAULT_ENV.call.to_sym if defined?(DEFAULT_ENV)
       resolver =   ConnectionAdapters::ConnectionSpecification::Resolver.new configurations
       spec     =   resolver.spec(spec)
 
